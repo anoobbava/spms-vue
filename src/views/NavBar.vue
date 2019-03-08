@@ -31,6 +31,11 @@ export default {
           title: 'Register',
           icon: 'face',
           link: '/register'
+        },
+        {
+          title: 'Login',
+          icon: 'no_encryption',
+          link: '/login'
         }
       ]
     }
