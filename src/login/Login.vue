@@ -76,8 +76,18 @@ export default {
     },
 
     login () {
-      console.log('data is ready for login')
-    }
-  }
-}
+      const userObject = {
+        email: this.email,
+        password: this.password
+      }
+      this.$store.dispatch('loginAction', userObject)
+        .then(success => {
+          alert('successfull login')
+        })
+        .catch(error => {
+          alert('login failure')
+        })
+      } //login
+    }//methods
+  }//export
 </script>
