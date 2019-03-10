@@ -18,6 +18,12 @@
         <v-btn flat v-for="item in items" :key="item.title" :to="item.link">
           <v-icon right>{{item.icon}}</v-icon>{{item.title}}
         </v-btn>
+        <v-btn
+          v-if="isLoggedIn"
+          flat @click="logout"
+          >
+          Logout
+        </v-btn>
       </v-toolbar-items>
     </v-toolbar>
 </template>
@@ -25,6 +31,7 @@
 <script>
 export default {
   computed: {
+
     items () {
       return [
         {
@@ -38,6 +45,16 @@ export default {
           link: '/login'
         }
       ]
+    },
+
+    isLoggedIn () {
+      return this.$store.getters.isLoggedIn
+    }
+  },
+
+  methods: {
+    logout () {
+      this.$store.dispatch('logoutAction')
     }
   }
 }

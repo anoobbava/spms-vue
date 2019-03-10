@@ -29,6 +29,12 @@ export default new Vuex.Store({
 
     loadingStatusMutation (state) {
       state.status = 'loading'
+    },
+
+    logoutMutation (state) {
+      state.status = 'success'
+      state.token = ''
+      state.user = ''
     }
   },
 
@@ -59,10 +65,16 @@ export default new Vuex.Store({
     },
 
     logoutAction ({ commit }, payload) {
-      commit('logoutMutation', payload)
+      localStorage.removeItem('token')
+      delete axios.defaults.headers.common['Authorization']
+      commit('logoutMutation')
     }
   },
 
   getters: {
+
+    isLoggedIn (state) {
+      return state.token
+    }
   }
 })
