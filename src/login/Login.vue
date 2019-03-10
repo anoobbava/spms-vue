@@ -81,13 +81,20 @@ export default {
         password: this.password
       }
       this.$store.dispatch('loginAction', userObject)
-        .then(success => {
-          alert('successfull login')
+        .then(() => {
+          alert('Login success')
+          this.$router.push('/regsiter')
         })
-        .catch(error => {
-          alert('login failure')
+        .catch(() => {
+          alert('Login Failure')
+          this.redirectToLogin()
         })
-      } //login
-    }//methods
-  }//export
+    },
+
+    redirectToLogin () {
+      this.$router.push('/login')
+      this.reset()
+    }
+  }
+}
 </script>

@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+// need to check whether the axios is needed here or not.??
 import axios from 'axios'
+import LoginLogoutHelper from '@/services/LoginLogoutHelper'
 
 Vue.use(Vuex)
 
@@ -13,19 +15,20 @@ export default new Vuex.Store({
 
   mutations: {
 
-    // this will set the status to loading, success, failure
-    statusMutation (state, payload) {
-      state.status = payload
+    successMutation (state, { token, user }) {
+      state.status = 'success'
+      state.token = token
+      state.user = user
     },
 
-    // will set the token to the state
-    tokenMutation (state, payload) {
-      state.token = payload
+    failureMutation (state) {
+      state.status = 'failure'
+      state.token = ''
+      state.user = ''
     },
 
-    // set the user object to the state
-    userMutation (state, payload) {
-      state.user = payload
+    loadingStatusMutation (state) {
+      state.status = 'loading'
     }
   },
 
@@ -33,25 +36,22 @@ export default new Vuex.Store({
 
     loginAction ({ commit }, payload) {
       // set the status to loading
-      commit('statusMutation', 'loading')
+      commit('loadingStatusMutation')
       // now call the api to get the auth token and save to the localStorage
       return new Promise((resolve, reject) => {
-        axios({ url: 'http://localhost:3000/api/v1/login',
-          data: { email: payload.email, password: payload.password },
-          method: 'POST' })
+        LoginLogoutHelper.login(payload)
+
           .then(response => {
-            const token = response.data.auth_token
-            const user = response.data.user
+            const token = response.auth_token
+            const user = response.user.data
             localStorage.setItem('token', token)
             axios.defaults.headers.common['Authorization'] = token
-            commit('statusMutation', 'success')
-            commit('tokenMutation', token)
-            commit('userMutation', user)
+            commit('successMutation', { token, user })
             resolve(response)
           })
 
           .catch(error => {
-            commit('statusMutation', 'failure')
+            commit('failureMutation')
             localStorage.removeItem('token')
             reject(error)
           })

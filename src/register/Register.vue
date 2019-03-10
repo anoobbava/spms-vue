@@ -76,7 +76,8 @@ export default {
     passwordShow: false,
     confirmPasswordShow: false,
     valid: true,
-    name: '',
+    firstName: '',
+    LastName: '',
     nameRules: [
       v => !!v || 'First Name is required',
       v => (v && v.length <= 10) || 'First Name must be less than 10 characters'
