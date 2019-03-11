@@ -19,6 +19,13 @@ export default {
   data () {
     return {
     }
+  },
+  created () {
+    if (this.$store.getters.isLoggedIn === '' || this.$store.getters.isLoggedIn === undefined) {
+      this.$router.push('/')
+    } else {
+      this.$store.dispatch('validateTokenAction', localStorage.getItem('token'))
+    }
   }
 }
 </script>
