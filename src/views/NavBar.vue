@@ -45,7 +45,7 @@ export default {
         {
           title: 'Login',
           icon: 'no_encryption',
-          link: '/login'
+          link: '/'
         }
       ]
     },
@@ -58,7 +58,7 @@ export default {
   methods: {
     logout () {
       this.$store.dispatch('logoutAction')
-      this.$router.push('/login')
+      this.$router.push('/')
     }
   }
 }
