@@ -83,7 +83,7 @@ export default {
       this.$store.dispatch('loginAction', userObject)
         .then(() => {
           alert('Login success')
-          this.$router.push('/regsiter')
+          this.$router.push('/home')
         })
         .catch(() => {
           alert('Login Failure')

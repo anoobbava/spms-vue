@@ -14,15 +14,18 @@
       <v-spacer></v-spacer>
 
       <!-- navigation bar links -->
-      <v-toolbar-items class='hidden-xs-only'>
+      <v-toolbar-items class='hidden-xs-only' v-if="!isLoggedIn">
         <v-btn flat v-for="item in items" :key="item.title" :to="item.link">
           <v-icon right>{{item.icon}}</v-icon>{{item.title}}
         </v-btn>
+      </v-toolbar-items>
+
+      <v-toolbar-items class='hidden-xs-only' v-else>
         <v-btn
           v-if="isLoggedIn"
           flat @click="logout"
           >
-          Logout
+          <v-icon right>delete_sweep</v-icon>Logout
         </v-btn>
       </v-toolbar-items>
     </v-toolbar>
@@ -55,6 +58,7 @@ export default {
   methods: {
     logout () {
       this.$store.dispatch('logoutAction')
+      this.$router.push('/login')
     }
   }
 }
