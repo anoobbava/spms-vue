@@ -2,15 +2,15 @@
 
     <!-- display the navigation bar -->
     <v-toolbar>
-      <v-toolbar-title>
-      <!-- link for the home page -->
-        <router-link
-        to='/'
-        tag='span'
-        style='cursor: pointer'>
-        SPMS
-        </router-link>
-      </v-toolbar-title>
+      <v-toolbar-items>
+        <v-btn
+          flat @click="redirectToPage"
+            tag='span'
+            style='cursor: pointer'
+            >
+          SPMS
+        </v-btn>
+      </v-toolbar-items>
       <v-spacer></v-spacer>
 
       <!-- navigation bar links -->
@@ -18,6 +18,7 @@
         <v-btn flat v-for="item in items" :key="item.title" :to="item.link">
           <v-icon right>{{item.icon}}</v-icon>{{item.title}}
         </v-btn>
+        <v-spacer></v-spacer>
       </v-toolbar-items>
 
       <v-toolbar-items class='hidden-xs-only' v-else>
@@ -45,7 +46,7 @@ export default {
         {
           title: 'Login',
           icon: 'no_encryption',
-          link: '/'
+          link: '/login'
         }
       ]
     },
@@ -58,7 +59,15 @@ export default {
   methods: {
     logout () {
       this.$store.dispatch('logoutAction')
-      this.$router.push('/')
+      this.$router.push('/login')
+    },
+
+    redirectToPage () {
+      if (this.isLoggedIn === '' || this.isLoggedIn === undefined) {
+        this.$router.push('/login')
+      } else {
+        this.$router.push('/')
+      }
     }
   }
 }

@@ -22,7 +22,7 @@ export default {
   },
   created () {
     if (this.$store.getters.isLoggedIn === '' || this.$store.getters.isLoggedIn === undefined) {
-      this.$router.push('/')
+      this.$router.push('/login')
     } else {
       this.$store.dispatch('validateTokenAction', localStorage.getItem('token'))
     }
