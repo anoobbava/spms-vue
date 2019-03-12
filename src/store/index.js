@@ -32,7 +32,7 @@ export default new Vuex.Store({
     },
 
     logoutMutation (state) {
-      state.status = 'success'
+      state.status = ''
       state.token = ''
       state.user = ''
     },
@@ -113,6 +113,10 @@ export default new Vuex.Store({
 
     isLoggedIn (state) {
       return state.token
+    },
+
+    status (state) {
+      return state.status
     }
   }
 })
