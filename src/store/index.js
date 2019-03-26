@@ -78,7 +78,6 @@ export default new Vuex.Store({
     },
 
     validateTokenAction ({ commit }, payload) {
-      debugger
       commit('loadingStatusMutation')
       if (payload !== '' || payload !== undefined) {
         return new Promise((resolve, reject) => {

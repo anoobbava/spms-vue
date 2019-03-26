@@ -131,7 +131,6 @@ export default {
   },
   mounted () {
     if (this.$store.getters.user) {
-      debugger
       const user = this.$store.getters.user.attributes
       this.email = user.email
       this.designation = user.designation
