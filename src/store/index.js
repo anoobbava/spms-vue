@@ -106,7 +106,7 @@ export default new Vuex.Store({
             })
         })
       }
-    }
+    }, 
   },
 
   getters: {
@@ -117,6 +117,10 @@ export default new Vuex.Store({
 
     status (state) {
       return state.status
+    },
+
+    user (state) {
+      return state.user
     }
   }
 })

@@ -1,7 +1,7 @@
 <template>
 
     <!-- display the navigation bar -->
-    <v-toolbar>
+    <v-toolbar color="primary">
       <v-toolbar-items>
         <v-btn
           flat @click="redirectToPage"
@@ -14,16 +14,15 @@
       <v-spacer></v-spacer>
 
       <!-- navigation bar links -->
-      <v-toolbar-items class='hidden-xs-only' v-if="!isLoggedIn">
+      <v-toolbar-items class='hidden-xs-only'>
         <v-btn flat v-for="item in items" :key="item.title" :to="item.link">
           <v-icon right>{{item.icon}}</v-icon>{{item.title}}
         </v-btn>
         <v-spacer></v-spacer>
       </v-toolbar-items>
 
-      <v-toolbar-items class='hidden-xs-only' v-else>
+      <v-toolbar-items class='hidden-xs-only' v-if="isLoggedIn">
         <v-btn
-          v-if="isLoggedIn"
           flat @click="logout"
           >
           <v-icon right>delete_sweep</v-icon>Logout
@@ -37,7 +36,7 @@ export default {
   computed: {
 
     items () {
-      return [
+      let menuItems = [
         {
           title: 'Register',
           icon: 'face',
@@ -49,6 +48,16 @@ export default {
           link: '/login'
         }
       ]
+      if (this.isLoggedIn) {
+        menuItems = [
+          {
+            title: 'Profile',
+            icon: 'account_circle',
+            link: '/profile'
+          }
+        ]
+      }
+      return menuItems
     },
 
     isLoggedIn () {

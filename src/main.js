@@ -7,7 +7,7 @@ import axios from 'axios'
 
 Vue.config.productionTip = false
 const token = localStorage.getItem('token')
-axios.defaults.baseURL = 'http://localhost:3000/'
+axios.defaults.baseURL = process.env.VUE_APP_RAILS_API_URL
 
 if (token) {
   axios.defaults.headers.common['Authorization'] = token

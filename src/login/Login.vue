@@ -26,7 +26,7 @@
 
           <v-btn
             :disabled="!valid"
-            color="success"
+            color="primary"
             @click="validate"
           >
             Login
