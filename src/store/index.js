@@ -78,6 +78,7 @@ export default new Vuex.Store({
     },
 
     validateTokenAction ({ commit }, payload) {
+      debugger
       commit('loadingStatusMutation')
       if (payload !== '' || payload !== undefined) {
         return new Promise((resolve, reject) => {
@@ -106,7 +107,7 @@ export default new Vuex.Store({
             })
         })
       }
-    }
+    }, 
   },
 
   getters: {
@@ -117,6 +118,10 @@ export default new Vuex.Store({
 
     status (state) {
       return state.status
+    },
+
+    user (state) {
+      return state.user
     }
   }
 })

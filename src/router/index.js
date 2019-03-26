@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Register from '@/register/Register.vue'
 import Login from '@/login/Login.vue'
 import Home from '@/views/Home.vue'
+import Profile from '@/views/Profile.vue'
 
 Vue.use(Router)
 
@@ -25,6 +26,11 @@ export default new Router({
       name: 'Home',
       component: Home,
       meta: { requiresLogin: true }
-    }
+    },
+    {
+      path: '/profile',
+      name: 'Profile',
+      component: Profile
+    },
   ]
 })
