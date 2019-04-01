@@ -1,12 +1,12 @@
 <template>
   <v-container>
     <v-layout row wrap>
-      <v-flex>
+      <v-flex xs8>
         <v-form
           ref="form"
           v-model="valid"
           lazy-validation
-          >
+          xs6 >
           <v-text-field
             v-model="email"
             :rules="emailRules"
@@ -82,11 +82,9 @@ export default {
       }
       this.$store.dispatch('loginAction', userObject)
         .then(() => {
-          alert('Login success')
           this.$router.push('/')
         })
         .catch(() => {
-          alert('Login Failure')
           this.redirectToLogin()
         })
     },

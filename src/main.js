@@ -16,5 +16,14 @@ if (token) {
 new Vue({
   router,
   store,
-  render: h => h(App)
+  render: h => h(App),
+  created () {
+    // need to move this code to some where common files
+    if (this.$store.getters.isLoggedIn === '' || this.$store.getters.isLoggedIn === undefined) {
+      this.$router.push('/login')
+    } else {
+      this.$store.dispatch('validateTokenAction', localStorage.getItem('token'))
+      // this.$store.dispatch('projectsAction')
+    }
+  }
 }).$mount('#app')

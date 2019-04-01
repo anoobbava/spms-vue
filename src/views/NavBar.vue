@@ -54,6 +54,11 @@ export default {
             title: 'Profile',
             icon: 'account_circle',
             link: '/profile'
+          },
+          {
+            title: 'Projects',
+            icon: 'work_outline',
+            link: '/projects'
           }
         ]
       }

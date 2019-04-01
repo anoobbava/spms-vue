@@ -4,13 +4,13 @@ import axios from 'axios'
 
 export default {
 
-  login (payload) {
-    return axios.post('api/v1/login', { email: payload.email, password: payload.password })
-      .then(response => response.data)
+  async login (payload) {
+    const response = await axios.post('login', { email: payload.email, password: payload.password });
+    return response.data
   },
 
-  validateToken (payload) {
-    return axios.post('/api/v1/validate_token', { Authorization: payload.auth_token })
-      .then(response => response.data)
+  async validateToken (payload) {
+    const response = await axios.post('validate_token', { Authorization: payload.auth_token })
+    return response.data
   }
 }
