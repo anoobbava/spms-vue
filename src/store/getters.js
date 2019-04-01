@@ -13,6 +13,6 @@ export default {
   },
 
   projects (state) {
-    return state.projects
+    return Object.values(state.projects)
   }
 }
