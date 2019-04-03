@@ -32,6 +32,7 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex'
 export default {
   computed: {
 
@@ -64,15 +65,15 @@ export default {
       }
       return menuItems
     },
-
-    isLoggedIn () {
-      return this.$store.getters.isLoggedIn
-    }
+    ...mapGetters(['isLoggedIn'])
   },
 
   methods: {
+    ...mapActions(['logoutAction']),
+    // ...mapActions({logout: 'logoutAction'}) and call this.logout also
+    // possible
     logout () {
-      this.$store.dispatch('logoutAction')
+      this.logoutAction()
       this.$router.push('/login')
     },
 

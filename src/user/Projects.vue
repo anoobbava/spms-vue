@@ -51,7 +51,7 @@
                     <v-list-tile
                       v-for="(option, i) in options"
                       :key="i"
-                      @click= {{option.method}}
+                      @click= "option.method"
                     >
                     <v-list-tile-title>{{ option.title }}</v-list-tile-title>
                     </v-list-tile>
@@ -66,6 +66,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
   data () {
     return {
@@ -100,9 +101,7 @@ export default {
   },
 
   computed: {
-    projects () {
-      return this.$store.getters.projects
-    }
+    ...mapGetters(['projects'])
   },
 
   methods: {

@@ -52,6 +52,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 export default {
 
   data: () => ({
@@ -70,7 +71,7 @@ export default {
   }),
 
   methods: {
-
+    ...mapActions({ loginUser: 'loginAction' }),
     validate () {
       if (this.$refs.form.validate()) {
         this.snackbar = true
@@ -87,7 +88,7 @@ export default {
         email: this.email,
         password: this.password
       }
-      this.$store.dispatch('loginAction', userObject)
+      this.loginUser(userObject)
         .then(() => {
           this.$router.push('/')
         })

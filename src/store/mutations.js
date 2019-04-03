@@ -13,7 +13,7 @@ export default {
     state.user = ''
   },
 
-  loadingStatusMutation: state => { state.status = 'loading' },
+  loadingStatusMutation: state => (state.status = 'loading'),
 
   logoutMutation: state => {
     state.status = ''
