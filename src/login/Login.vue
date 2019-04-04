@@ -53,6 +53,7 @@
 
 <script>
 import { mapActions } from 'vuex'
+import SweetAlerts from '@/services/SweetAlerts'
 export default {
 
   data: () => ({
@@ -91,9 +92,11 @@ export default {
       this.loginUser(userObject)
         .then(() => {
           this.$router.push('/')
+          SweetAlerts.successfulLogin()
         })
         .catch(() => {
           this.redirectToLogin()
+          SweetAlerts.failureLogin()
         })
     },
 
