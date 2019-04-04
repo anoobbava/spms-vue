@@ -16,6 +16,7 @@
                 v-model="email"
                 :rules="emailRules"
                 label="E-mail"
+                class='email'
                 required>
               </v-text-field>
 
@@ -35,13 +36,15 @@
             <v-btn
               :disabled="!valid"
               color="primary"
-              @click="validate">
+              @click="validate"
+              class="login">
               Login
             </v-btn>
             <v-spacer></v-spacer>
             <v-btn
               color="error"
-              @click="reset">
+              @click="reset"
+              class="reset">
               Reset Form
             </v-btn>
           </v-card-actions>
@@ -81,7 +84,8 @@ export default {
     },
 
     reset () {
-      this.$refs.form.reset()
+      this.email = ''
+      this.password =  ''
     },
 
     login () {
