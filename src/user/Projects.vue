@@ -51,7 +51,7 @@
                     <v-list-tile
                       v-for="(option, i) in options"
                       :key="i"
-                      @click= "option.method"
+                      @click= "handleFunctionCall(option.method)"
                     >
                     <v-list-tile-title>{{ option.title }}</v-list-tile-title>
                     </v-list-tile>
@@ -105,12 +105,16 @@ export default {
   },
 
   methods: {
+    handleFunctionCall (name) {
+      this[name]()
+    },
+
     displayTickets () {
-      alert('displayTickets')
+      this.$router.push('/tickets')
     },
 
     addTicket () {
-      alert('addTicket')
+      this.$router.push('/create_ticket')
     },
 
     AddActivity () {

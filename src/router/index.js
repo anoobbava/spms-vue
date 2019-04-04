@@ -5,6 +5,8 @@ import Login from '@/login/Login.vue'
 import Home from '@/views/Home.vue'
 import Profile from '@/views/Profile.vue'
 import Projects from '@/user/Projects.vue'
+import Tickets from '@/user/Tickets'
+import CreateTicket from '@/user/CreateTicket'
 
 Vue.use(Router)
 
@@ -37,6 +39,16 @@ export default new Router({
       path: '/projects',
       name: 'Projects',
       component: Projects
+    },
+    {
+      path: '/tickets',
+      name: 'Tickets',
+      component: Tickets
+    },
+    {
+      path: '/create_ticket',
+      name: 'CreateTicket',
+      component: CreateTicket
     }
   ]
 })
