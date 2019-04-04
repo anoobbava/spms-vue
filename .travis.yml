@@ -6,3 +6,5 @@ cache:
     - node_modules
 script:
   - npm run test:unit
+after_script:
+- cat ./build/coverage/**/lcov.info | ./node_modules/coveralls/bin/coveralls.js
