@@ -7,6 +7,7 @@ import Profile from '@/views/Profile.vue'
 import Projects from '@/user/Projects.vue'
 import Tickets from '@/user/Tickets'
 import CreateTicket from '@/user/CreateTicket'
+import AuthGuard from '@/services/AuthGuard'
 
 Vue.use(Router)
 
@@ -28,17 +29,19 @@ export default new Router({
       path: '/',
       name: 'Home',
       component: Home,
-      meta: { requiresLogin: true }
+      beforeEnter: AuthGuard
     },
     {
       path: '/profile',
       name: 'Profile',
-      component: Profile
+      component: Profile,
+      beforeEnter: AuthGuard
     },
     {
       path: '/projects',
       name: 'Projects',
-      component: Projects
+      component: Projects,
+      beforeEnter: AuthGuard
     },
     {
       path: '/tickets',
