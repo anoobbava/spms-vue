@@ -1,17 +1,23 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils'
 import VueRouter from 'vue-router'
 import Login from '@/login/Login.vue'
+import Vuex from 'vuex'
 
 describe('Login', () => {
-  // const $route = {
-  //   path: '/login'
-  // }
   const localVue = createLocalVue()
   localVue.use(VueRouter)
+  localVue.use(Vuex)
   const router = new VueRouter()
-  const wrapper = shallowMount(Login, {
-    localVue, router
+  const store = new Vuex.Store({
+    state: {
+      email: '',
+      password: ''
+    }
   })
+  const wrapper = shallowMount(Login, {
+    localVue, router, store
+  })
+  const options = { localVue, router }
 
   it('Login is a component', () => {
     expect(wrapper.isVueInstance()).toBeTruthy()
@@ -44,10 +50,14 @@ describe('Login', () => {
   it('will in turn call the redirectToLogin', () => {
     wrapper.vm.email = 'test@test.com'
     wrapper.vm.password = '123456'
+    // const options = { localVue, router }
+    const routerPushSpy = jest.spyOn(options.router, 'push')
     wrapper.vm.redirectToLogin()
-    expect(wrapper.vm.email).toBe('')
-    expect(wrapper.vm.password).toBe('')
-    router.push('/')
-    expect(wrapper.html()).toContain('<v-toolbar-title>Login</v-toolbar-title>')
+    expect(routerPushSpy).toHaveBeenCalledWith('/login')
+  })
+
+  it('renders correctly', () => {
+    // const comp = new Vue(Login).$mount()
+    expect(wrapper.$el).toMatchSnapshot()
   })
 })
