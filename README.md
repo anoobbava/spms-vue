@@ -30,7 +30,10 @@ example: `file:///Users/sarath/vuejs/spms-vue/coverage/index.html`
 ### Setup Locally
 
 `npm install` to install the dependencies
+
 `npm run serve` to run the DEV environment
+
 `npm run test:unit` for the unit tests
+
 `VUE_APP_RAILS_API_URL=` is the URL for the ROR Backend.
 

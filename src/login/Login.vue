@@ -85,7 +85,7 @@ export default {
 
     reset () {
       this.email = ''
-      this.password =  ''
+      this.password = ''
     },
 
     login () {

@@ -1,8 +1,17 @@
-import { shallowMount } from '@vue/test-utils'
+import { shallowMount, createLocalVue } from '@vue/test-utils'
+import VueRouter from 'vue-router'
 import Login from '@/login/Login.vue'
 
 describe('Login', () => {
-  const wrapper = shallowMount(Login)
+  // const $route = {
+  //   path: '/login'
+  // }
+  const localVue = createLocalVue()
+  localVue.use(VueRouter)
+  const router = new VueRouter()
+  const wrapper = shallowMount(Login, {
+    localVue, router
+  })
 
   it('Login is a component', () => {
     expect(wrapper.isVueInstance()).toBeTruthy()
@@ -30,7 +39,15 @@ describe('Login', () => {
     wrapper.find('v-btn.reset').trigger('click')
     expect(wrapper.vm.email).toBe('')
     expect(wrapper.vm.password).toBe('')
-    // console.log(wrapper.find('button'))
-    debugger
+  })
+
+  it('will in turn call the redirectToLogin', () => {
+    wrapper.vm.email = 'test@test.com'
+    wrapper.vm.password = '123456'
+    wrapper.vm.redirectToLogin()
+    expect(wrapper.vm.email).toBe('')
+    expect(wrapper.vm.password).toBe('')
+    router.push('/')
+    expect(wrapper.html()).toContain('<v-toolbar-title>Login</v-toolbar-title>')
   })
 })
