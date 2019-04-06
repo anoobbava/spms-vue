@@ -1,7 +1,5 @@
 import axios from 'axios'
 
-// axios.defaults.baseURL = process.env.RAILS_APP_API_URL
-
 export default {
 
   async login (payload) {

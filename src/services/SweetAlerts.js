@@ -18,5 +18,15 @@ export default {
       timer: 1000,
       showConfirmButton: false
     })
+  },
+
+  noProjects () {
+    Swal.fire({
+      title: 'OOps!',
+      text: 'You are not assigned to any Project',
+      timer: 1500,
+      type: 'warning',
+      showConfirmButton: false
+    })
   }
 }
