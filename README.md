@@ -1,6 +1,6 @@
 # spms-vue
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/7002ce13-205f-4995-9f4f-b0d10a5351a5/deploy-status)](https://app.netlify.com/sites/spms-vue/deploys)    [![Build Status](https://travis-ci.com/anoobbava/spms-vue.svg?branch=master)](https://travis-ci.com/anoobbava/spms-vue)  [![Coverage Status](https://coveralls.io/repos/github/anoobbava/spms-vue/badge.svg)](https://coveralls.io/github/anoobbava/spms-vue)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/7002ce13-205f-4995-9f4f-b0d10a5351a5/deploy-status)](https://app.netlify.com/sites/spms-vue/deploys)    [![Build Status](https://travis-ci.com/anoobbava/spms-vue.svg?branch=master)](https://travis-ci.com/anoobbava/spms-vue)  [![Coverage Status](https://coveralls.io/repos/github/anoobbava/spms-vue/badge.svg?branch=master)](https://coveralls.io/github/anoobbava/spms-vue?branch=master)
 
 This is the Vue front end application which is used to log the secondary time sheet for the employees. Currently backed with ROR and below functionalities are covered here
 
