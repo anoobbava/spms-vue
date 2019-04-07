@@ -1,5 +1,5 @@
 import axios from 'axios'
-import LoginHelper from '@/services/LoginHelper'
+import ApiHelper from '@/services/ApiHelper'
 
 export default {
   state: {
@@ -10,14 +10,12 @@ export default {
   },
 
   actions: {
-    loginAction ({
-      commit
-    }, payload) {
+    loginAction ({ commit }, payload) {
       // set the status to loading
       commit('loadingStatusMutation')
       // now call the api to get the auth token and save to the localStorage
       return new Promise((resolve, reject) => {
-        LoginHelper.login(payload)
+        ApiHelper.login(payload)
           .then(response => {
             const token = response.auth_token
             const user = response.user.data
@@ -53,7 +51,7 @@ export default {
       commit('loadingStatusMutation')
       if (payload !== '' || payload !== undefined) {
         return new Promise((resolve, reject) => {
-          LoginHelper.validateToken(payload)
+          ApiHelper.validateToken(payload)
             .then(response => {
               if (response.success) {
                 axios.defaults.headers.common['Authorization'] = payload

@@ -8,10 +8,11 @@ import Projects from '@/user/Projects.vue'
 import Tickets from '@/user/Tickets'
 import CreateTicket from '@/user/CreateTicket'
 import AuthGuard from '@/services/AuthGuard'
+import store from '@/store'
 
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
@@ -55,3 +56,19 @@ export default new Router({
     }
   ]
 })
+
+router.beforeResolve((to, _from, next) => {
+  // const store = require('./store')
+  if (to.name) {
+    // alert('called me')
+    debugger
+    store.dispatch('startLoading')
+  }
+  next()
+})
+router.afterEach((to, from) => {
+  // alert('ended me')
+  store.dispatch('stopLoading')
+})
+
+export default router
