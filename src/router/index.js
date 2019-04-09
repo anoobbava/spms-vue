@@ -1,12 +1,18 @@
+// import common files
 import Vue from 'vue'
 import Router from 'vue-router'
-import Register from '@/register/Register.vue'
-import Login from '@/login/Login.vue'
-import Home from '@/views/Home.vue'
-import Profile from '@/views/Profile.vue'
-import Projects from '@/user/Projects.vue'
-import Tickets from '@/user/Tickets'
-import CreateTicket from '@/user/CreateTicket'
+
+// import routes
+import RegisterView from '@/views/layouts/Register'
+import LoginView from '@/views/layouts/Login'
+import DashboardView from '@/views/layouts/Dashboard'
+import ProfileView from '@/views/layouts/Profile'
+import ProjectsView from '@/views/layouts/Projects'
+import TicketsView from '@/views/layouts/Tickets'
+import CreateTicketView from '@/views/layouts/CreateTicket'
+import NotFoundView from '@/views/layouts/NotFound'
+
+// import helpers
 import AuthGuard from '@/services/AuthGuard'
 import store from '@/store'
 
@@ -18,41 +24,45 @@ const router = new Router({
   routes: [
     {
       path: '/register',
-      name: 'Register',
-      component: Register
+      // name: 'Register',
+      component: RegisterView
     },
     {
       path: '/login',
-      name: 'Login',
-      component: Login
+      // name: 'Login',
+      component: LoginView
     },
     {
-      path: '/',
-      name: 'Home',
-      component: Home,
+      path: '/dashboard',
+      // name: 'Home',
+      component: DashboardView,
       beforeEnter: AuthGuard
     },
     {
       path: '/profile',
-      name: 'Profile',
-      component: Profile,
+      // name: 'Profile',
+      component: ProfileView,
       beforeEnter: AuthGuard
     },
     {
       path: '/projects',
-      name: 'Projects',
-      component: Projects,
+      // name: 'Projects',
+      component: ProjectsView,
       beforeEnter: AuthGuard
     },
     {
       path: '/tickets',
-      name: 'Tickets',
-      component: Tickets
+      // name: 'Tickets',
+      component: TicketsView
     },
     {
       path: '/create_ticket',
-      name: 'CreateTicket',
-      component: CreateTicket
+      // name: 'CreateTicket',
+      component: CreateTicketView
+    },
+    {
+      path: '*',
+      component: NotFoundView
     }
   ]
 })

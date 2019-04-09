@@ -11,8 +11,8 @@
 <script>
 import { mapGetters } from 'vuex'
 export default {
-computed: {
-  ...mapGetters(['loading'])
-},
+  computed: {
+    ...mapGetters(['loading'])
+  }
 }
 </script>

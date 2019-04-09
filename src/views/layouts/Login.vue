@@ -95,7 +95,7 @@ export default {
       }
       this.loginUser(userObject)
         .then(() => {
-          this.$router.push('/')
+          this.$router.push('/dashboard')
           SweetAlerts.successfulLogin()
         })
         .catch(() => {

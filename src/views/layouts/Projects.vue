@@ -44,7 +44,7 @@
             </td>
           </template>
         </v-data-table>
-        <div v-else-if="noProjects"> {{displayNotification()}}</div>
+        <div v-else-if="projects.length === 0"> {{displayNotification()}}</div>
       </v-flex>
     </v-layout>
   </v-container>
@@ -107,13 +107,9 @@ export default {
       alert('AddActivity')
     },
 
-    displayNotification() {
+    displayNotification () {
       SweetAlerts.noProjects()
       this.$router.push('/')
-    },
-
-    noProjects () {
-      projects.length === 0
     }
   }
 }

@@ -10,8 +10,8 @@
 </template>
 
 <script>
-import NavBar from '@/views/NavBar'
-import Loader from '@/components/loader'
+import NavBar from '@/components/shared/NavBar'
+import Loader from '@/components/shared/loader'
 export default {
   name: 'App',
   components: {

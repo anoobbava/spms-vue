@@ -81,7 +81,7 @@ export default {
       if (this.isLoggedIn === '' || this.isLoggedIn === undefined) {
         this.$router.push('/login')
       } else {
-        this.$router.push('/')
+        this.$router.push('/dashboard')
       }
     }
   }
