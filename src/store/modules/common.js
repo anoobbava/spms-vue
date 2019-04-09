@@ -9,12 +9,10 @@ export default {
   },
   actions: {
     startLoading ({ commit }) {
-      debugger
       commit('setLoading', true)
     },
 
     stopLoading ({ commit }) {
-      debugger
       commit('setLoading', false)
     }
   },

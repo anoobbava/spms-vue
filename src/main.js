@@ -1,9 +1,16 @@
+// import main imports
 import Vue from 'vue'
-import './plugins/vuetify'
 import App from './App.vue'
+
+// import plugins
+import './plugins/vuetify'
 import router from '@/router'
 import store from '@/store'
 import axios from 'axios'
+import VueChartkick from 'vue-chartkick'
+import Chart from 'chart.js'
+
+Vue.use(VueChartkick, { adapter: Chart })
 
 Vue.config.productionTip = false
 const token = localStorage.getItem('token')
@@ -23,7 +30,6 @@ new Vue({
       this.$router.push('/login')
     } else {
       this.$store.dispatch('validateTokenAction', localStorage.getItem('token'))
-      // this.$store.dispatch('projectsAction')
     }
   }
 }).$mount('#app')

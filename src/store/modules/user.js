@@ -10,7 +10,7 @@ export default {
   },
 
   actions: {
-    loginAction ({ commit }, payload) {
+    loginAction ({ commit, dispatch }, payload) {
       // set the status to loading
       commit('loadingStatusMutation')
       // now call the api to get the auth token and save to the localStorage
@@ -25,8 +25,7 @@ export default {
               token,
               user
             })
-            commit('projectsMutation',
-              user.attributes.projects.data)
+            dispatch('projectsAction', user.attributes.projects)
             resolve(response)
           })
           .catch(error => {
@@ -45,9 +44,7 @@ export default {
       commit('logoutMutation')
     },
 
-    validateTokenAction ({
-      commit
-    }, payload) {
+    validateTokenAction ({ commit, dispatch }, payload) {
       commit('loadingStatusMutation')
       if (payload !== '' || payload !== undefined) {
         return new Promise((resolve, reject) => {
@@ -61,8 +58,7 @@ export default {
                   token,
                   user
                 })
-                commit('projectsMutation',
-                  user.attributes.projects.data)
+                dispatch('projectsAction', user.attributes.projects)
                 resolve(response)
               } else if (response.error) {
                 localStorage.removeItem('token')

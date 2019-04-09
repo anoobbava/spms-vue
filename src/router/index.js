@@ -68,16 +68,12 @@ const router = new Router({
 })
 
 router.beforeResolve((to, _from, next) => {
-  // const store = require('./store')
   if (to.name) {
-    // alert('called me')
-    debugger
     store.dispatch('startLoading')
   }
   next()
 })
 router.afterEach((to, from) => {
-  // alert('ended me')
   store.dispatch('stopLoading')
 })
 
