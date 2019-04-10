@@ -7,7 +7,7 @@
       </pie-chart>
     </div>
     <div v-else>
-      <h2>You are not assigned to Any Projects</h2>
+      <h2 text-xs-center>You are not assigned to Any Projects</h2>
       <pie-chart
         :data="sampleDataValues">
       </pie-chart>

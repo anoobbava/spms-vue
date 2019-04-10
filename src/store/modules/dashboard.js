@@ -1,23 +1,38 @@
 export default {
-  // state: {
-  //   DashBoardProjects: '',
-  //   tickets: '',
-  //   ticket_activity_logs: ''
-  // },
+  state: {
+    tickets: '',
+    ticketActivityLogs: ''
+  },
 
-  // getters: {
-  //   DashBoardProjects: state => state.DashBoardProjects
-  // },
-  // actions: {
+  getters: {
+    tickets: state => state.tickets,
+    ticketActivityLogs: state => state.ticketActivityLogs
+  },
 
-  //   getDashBoard ({ commit }, payload) {
+  actions: {
+    // fetch all the details from the dashboard API
+    getDashBoard ({ dispatch }, payload) {
+      dispatch('ticketsAction', payload.attributes.tickets)
+      dispatch('ticketActivityLogsAction', payload.attributes.ticket_activity_logs)
+    },
 
-  //   }
-  // },
+    ticketsAction ({ commit }, payload) {
+      commit('ticketsMutation', payload)
+    },
 
-  // mutations: {
-  //   DashBoardProjectsMutation (state, payload) {
-  //     state.DashBoardProjects = payload
-  //   }
-  // }
+    ticketActivityLogsAction ({ commit }, payload) {
+      commit('ticketActivityLogsMutation', payload)
+    }
+  },
+
+  mutations: {
+
+    ticketsMutation: (state, payload) => {
+      state.tickets = payload.data
+    },
+
+    ticketActivityLogsMutation: (state, payload) => {
+      state.ticketActivityLogs = payload.data
+    }
+  }
 }
