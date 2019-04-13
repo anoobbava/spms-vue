@@ -10,6 +10,7 @@ import axios from 'axios'
 import VueChartkick from 'vue-chartkick'
 import Chart from 'chart.js'
 import moment from 'moment'
+import 'typeface-roboto/index.css'
 
 Vue.use(VueChartkick, { adapter: Chart })
 

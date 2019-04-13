@@ -2,7 +2,9 @@
   <div>
     <div v-if="ticketActivityLogs.length > 0">
       <h2>Time Spend Chart</h2>
-      <line-chart :data="this.dataValues"></line-chart>
+      <area-chart
+        :data="this.dataValues">
+      </area-chart>
     </div>
 
     <div v-else>
@@ -27,7 +29,7 @@ export default {
   computed: {
     ...mapGetters(['ticketActivityLogs']),
     dataValues () {
-    return this.createChartData()
+      return this.createChartData()
     }
   },
 
