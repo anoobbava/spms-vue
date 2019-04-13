@@ -33,7 +33,7 @@ const router = new Router({
       component: LoginView
     },
     {
-      path: '/dashboard',
+      path: '/',
       // name: 'Home',
       component: DashboardView,
       beforeEnter: AuthGuard
@@ -73,6 +73,7 @@ router.beforeResolve((to, _from, next) => {
   }
   next()
 })
+
 router.afterEach((to, from) => {
   store.dispatch('stopLoading')
 })

@@ -23,7 +23,7 @@
 export default {
   methods: {
     redirectToHome () {
-      this.$router.push('/dashboard')
+      this.$router.push('/')
     }
   }
 }

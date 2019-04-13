@@ -9,10 +9,13 @@ import store from '@/store'
 import axios from 'axios'
 import VueChartkick from 'vue-chartkick'
 import Chart from 'chart.js'
+import moment from 'moment'
 
 Vue.use(VueChartkick, { adapter: Chart })
 
 Vue.config.productionTip = false
+Vue.prototype.moment = moment
+
 const token = localStorage.getItem('token')
 axios.defaults.baseURL = process.env.VUE_APP_RAILS_API_URL
 

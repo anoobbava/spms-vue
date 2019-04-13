@@ -21,7 +21,11 @@ export default {
     },
 
     ticketActivityLogsAction ({ commit }, payload) {
-      commit('ticketActivityLogsMutation', payload)
+      // sort the data based on date.
+      let data = payload.data.sort((a, b) => {
+        return new Date(b.attributes.log_date) - new Date(a.attributes.log_date)
+      })
+      commit('ticketActivityLogsMutation', data)
     }
   },
 
@@ -32,7 +36,7 @@ export default {
     },
 
     ticketActivityLogsMutation: (state, payload) => {
-      state.ticketActivityLogs = payload.data
+      state.ticketActivityLogs = payload
     }
   }
 }

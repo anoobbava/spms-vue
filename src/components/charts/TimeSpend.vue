@@ -27,8 +27,7 @@ export default {
   computed: {
     ...mapGetters(['ticketActivityLogs']),
     dataValues () {
-      const a = this.createChartData()
-      return a
+    return this.createChartData()
     }
   },
 
@@ -41,7 +40,6 @@ export default {
         localArray.push(this.ticketActivityLogs[i].attributes.log_time)
         dataArray.push(localArray)
       }
-      // debugger
       return dataArray
     }
   }

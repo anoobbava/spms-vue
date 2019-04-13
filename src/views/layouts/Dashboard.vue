@@ -14,7 +14,16 @@
           ></time-spend>
         </v-card>
       </v-flex>
+      <v-spacer></v-spacer>
+    </v-layout>
 
+    <v-layout row wrap>
+      <v-flex xs6>
+        <v-card>
+          <h2>TimeLine</h2>
+          <time-line/>
+        </v-card>
+      </v-flex>
     </v-layout>
   </v-container>
 </template>
@@ -23,11 +32,13 @@
 import ApiHelper from '@/services/ApiHelper'
 import PieChart from '@/components/charts/PieChart'
 import TimeSpend from '@/components/charts/TimeSpend'
+import TimeLine from '@/components/charts/TimeLine'
 
 export default {
   components: {
     PieChart,
-    TimeSpend
+    TimeSpend,
+    TimeLine
   },
 
   beforeMount () {
