@@ -8,9 +8,10 @@ import LoginView from '@/views/layouts/Login'
 import DashboardView from '@/views/layouts/Dashboard'
 import ProfileView from '@/views/layouts/Profile'
 import ProjectsView from '@/views/layouts/Projects'
-import TicketsView from '@/views/layouts/Tickets'
+import singleProjectview from '@/views/layouts/Tickets'
 import CreateTicketView from '@/views/layouts/CreateTicket'
 import NotFoundView from '@/views/layouts/NotFound'
+import Activity from '@/views/layouts/Activity'
 
 // import helpers
 import AuthGuard from '@/services/AuthGuard'
@@ -46,12 +47,17 @@ const router = new Router({
       beforeEnter: AuthGuard
     },
     {
-      path: '/tickets',
-      component: TicketsView
+      path: '/project/:project_id',
+      props: true,
+      component: singleProjectview
     },
     {
       path: '/create_ticket',
       component: CreateTicketView
+    },
+    {
+      path: '/activity',
+      component: Activity
     },
     {
       path: '*',

@@ -27,9 +27,13 @@
           </v-card-title>
 
           <v-card-actions>
-            <v-btn left flat color="primary">activity</v-btn>
-            <v-btn flat color="primary">Tickets</v-btn>
-            <v-spacer></v-spacer>
+            <v-btn flat
+              color="primary"
+              @click="displayActivity">activity</v-btn>
+            <v-btn flat
+              color="primary"
+              @click="displayTickets(project.id)">Tickets</v-btn>
+            <v-btn flat color="primary">Add Ticket</v-btn>
             <v-tooltip bottom>
               <template v-slot:activator="{ on }">
                 <v-avatar right
@@ -70,6 +74,14 @@ export default {
     displayNotification () {
       SweetAlerts.noProjects()
       this.$router.push('/')
+    },
+
+    displayActivity () {
+      this.$router.push('/activity')
+    },
+
+    displayTickets (projectId) {
+      this.$router.push('/project/'+ projectId)
     }
   }
 }

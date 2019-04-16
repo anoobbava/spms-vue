@@ -13,7 +13,8 @@ export default {
 
   getters: {
     projects: state => Object.values(state.projects),
-    projectNames: state => state.projectNames
+    projectNames: state => state.projectNames,
+    project: state => projectID => state.projects.find(project => project.id === projectID)
   },
 
   mutations: {

@@ -31,5 +31,10 @@ export default {
       Authorization: `bearer ${token}`
     })
     return response.data
+  },
+
+  async fetchTickets () {
+    const response = await axios.get('tickets', { Authorization: `bearer ${token}` })
+    return response.data
   }
 }

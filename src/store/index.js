@@ -7,6 +7,7 @@ import user from './modules/user'
 import projects from './modules/projects'
 import common from './modules/common'
 import dashboard from './modules/dashboard'
+import tickets from './modules/tickets'
 
 Vue.use(Vuex)
 
@@ -15,7 +16,8 @@ export default new Vuex.Store({
     user,
     projects,
     common,
-    dashboard
+    dashboard,
+    tickets
   },
   state: {
   },

@@ -30,12 +30,10 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
 
 export default {
+  props: ['ticketActivityLogs'],
   computed: {
-    ...mapGetters(['ticketActivityLogs']),
-
     colors () {
       return this.getRandomColor()
     }

@@ -13,16 +13,17 @@
       <v-flex xs6>
         <v-card>
           <h2>TimeLine</h2>
-          <time-line/>
+          <time-line :ticketActivityLogs="ticketActivityLogs"/>
         </v-card>
       </v-flex>
 
       <v-flex xs6>
-        <v-card>
+        <v-card mb-3>
           <pie-chart class="card-style"
           ></pie-chart>
         </v-card>
       </v-flex>
+
 
     </v-layout>
   </v-container>
@@ -33,6 +34,7 @@ import ApiHelper from '@/services/ApiHelper'
 import PieChart from '@/components/charts/PieChart'
 import TimeSpend from '@/components/charts/TimeSpend'
 import TimeLine from '@/components/charts/TimeLine'
+import { mapGetters } from 'vuex'
 
 export default {
   components: {
@@ -43,6 +45,10 @@ export default {
 
   beforeMount () {
     this.callApi()
+  },
+
+  computed: {
+    ...mapGetters(['ticketActivityLogs'])
   },
 
   methods: {

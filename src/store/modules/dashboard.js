@@ -1,23 +1,23 @@
 export default {
   state: {
-    tickets: '',
+    dashboardTickets: '',
     ticketActivityLogs: ''
   },
 
   getters: {
-    tickets: state => state.tickets,
+    dashboardTickets: state => state.dashboardTickets,
     ticketActivityLogs: state => state.ticketActivityLogs
   },
 
   actions: {
     // fetch all the details from the dashboard API
     getDashBoard ({ dispatch }, payload) {
-      dispatch('ticketsAction', payload.attributes.tickets)
+      dispatch('dashboardTicketsAction', payload.attributes.tickets)
       dispatch('ticketActivityLogsAction', payload.attributes.ticket_activity_logs)
     },
 
-    ticketsAction ({ commit }, payload) {
-      commit('ticketsMutation', payload)
+    dashboardTicketsAction ({ commit }, payload) {
+      commit('dashboardTicketsMutation', payload)
     },
 
     ticketActivityLogsAction ({ commit }, payload) {
@@ -31,8 +31,8 @@ export default {
 
   mutations: {
 
-    ticketsMutation: (state, payload) => {
-      state.tickets = payload.data
+    dashboardTicketsMutation: (state, payload) => {
+      state.dashboardTickets = payload.data
     },
 
     ticketActivityLogsMutation: (state, payload) => {
