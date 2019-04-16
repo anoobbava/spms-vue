@@ -21,7 +21,7 @@ module.exports = {
   ],
   testURL: 'http://localhost/',
   collectCoverage: true,
-  collectCoverageFrom: ['**/*.{js,vue}', '!**/node_modules/**', '!<rootDir>/dist/**',
+  collectCoverageFrom: ['**/*.{vue}', '!**/node_modules/**', '!<rootDir>/dist/**',
     '!<rootDir>/src/plugins/**', '!<rootDir>/tests/unit/**'],
   coverageReporters: ['lcov', 'text-summary']
 }

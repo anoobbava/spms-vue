@@ -3,7 +3,7 @@
     <div v-if="ticketActivityLogs.length > 0">
       <h2>Time Spend Chart</h2>
       <area-chart
-        :data="this.dataValues">
+        :data="dataValues">
       </area-chart>
     </div>
 
