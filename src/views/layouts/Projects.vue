@@ -1,52 +1,56 @@
 <template>
-  <v-container fill-height fluid grid-list-xl>
-    <v-layout justify-center wrap>
-      <v-flex md10>
-        <v-data-table v-if="projects.length > 0"
-          :headers="headers"
-          :items="projects"
-          hide-actions>
-          <template slot="headerCell" slot-scope="{ header }">
-            <span
-              class="subheading font-weight-light text-success text--darken-3"
-              v-text="header.text"
-            />
-          </template>
-          <template
-            slot="items"
-            slot-scope="{ item }">
-            <td class="capitalize">{{ item.attributes.name }}</td>
-            <td class="capitalize">{{ item.attributes.client_name }}</td>
-            <td class="capitalize">{{ item.attributes.manager.data.attributes.name}}</td>
-            <td>
-              <v-menu
-                bottom
-                origin="center center"
-                transition="scale-transition">
-                <template v-slot:activator="{ on }">
-                  <v-btn
-                    color="secondary"
-                    dark
+  <v-container grid-list-md text-xs-center>
+    <v-layout row wrap v-if="projects.length > 0">
+
+      <v-flex xs4
+        v-for="project in projects"
+        :key="project.id">
+
+        <v-card>
+          <v-img
+            class="white--text"
+            height="100px"
+            src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg">
+            <v-container fill-height fluid>
+              <v-layout fill-height>
+                <v-flex xs12 align-end flexbox>
+                  <span class="headline">{{project.attributes.name}}</span>
+                </v-flex>
+              </v-layout>
+            </v-container>
+          </v-img>
+
+          <v-card-title>
+            <div>
+              <span>{{project.attributes.client_name}}</span><br>
+            </div>
+          </v-card-title>
+
+          <v-card-actions>
+            <v-btn left flat color="primary">activity</v-btn>
+            <v-btn flat color="primary">Tickets</v-btn>
+            <v-spacer></v-spacer>
+            <v-tooltip bottom>
+              <template v-slot:activator="{ on }">
+                <v-avatar right
+                  size="60px"
+                  color="lighten-4">
+                  <v-img
+                    src="../img/user.png"
                     v-on="on"
-                    >
-                    options
-                  </v-btn>
-                </template>
-                <v-list>
-                  <v-list-tile
-                    v-for="(option, i) in options"
-                    :key="i"
-                    @click= "handleFunctionCall(option.method)">
-                    <v-list-tile-title>{{ option.title }}</v-list-tile-title>
-                  </v-list-tile>
-                </v-list>
-              </v-menu>
-            </td>
-          </template>
-        </v-data-table>
-        <div v-else-if="projects.length === 0"> {{displayNotification()}}</div>
+                    alt="avatar">
+                  </v-img>
+                </v-avatar>
+              </template>
+              <span>Manager >> {{project.attributes.manager.data.attributes.name}}</span>
+            </v-tooltip>
+          </v-card-actions>
+
+        </v-card>
       </v-flex>
+
     </v-layout>
+    <div v-else-if="projects.length === 0"> {{displayNotification()}}</div>
   </v-container>
 </template>
 
@@ -56,57 +60,13 @@ import SweetAlerts from '@/services/SweetAlerts'
 export default {
   data () {
     return {
-      headers: [
-        {
-          sortable: false,
-          text: 'Project',
-          value: 'project'
-        },
-        {
-          sortable: false,
-          text: 'client',
-          value: 'client'
-        },
-        {
-          sortable: false,
-          text: 'Manager',
-          value: 'manager'
-        },
-        {
-          sortable: false,
-          text: 'Actions',
-          value: 'actions'
-        }
-      ],
-      options: [
-        { title: 'Tickets', method: 'displayTickets' },
-        { title: 'Add Ticket', method: 'addTicket' },
-        { title: 'Add Activity', method: 'AddActivity' }
-      ]
+
     }
   },
-
   computed: {
     ...mapGetters(['projects'])
   },
-
   methods: {
-    handleFunctionCall (name) {
-      this[name]()
-    },
-
-    displayTickets () {
-      this.$router.push('/tickets')
-    },
-
-    addTicket () {
-      this.$router.push('/create_ticket')
-    },
-
-    AddActivity () {
-      alert('AddActivity')
-    },
-
     displayNotification () {
       SweetAlerts.noProjects()
       this.$router.push('/')
@@ -114,9 +74,3 @@ export default {
   }
 }
 </script>
-
-<style>
-  .capitalize {
-    text-transform: capitalize;
-}
-</style>

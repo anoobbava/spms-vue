@@ -24,40 +24,33 @@ const router = new Router({
   routes: [
     {
       path: '/register',
-      // name: 'Register',
       component: RegisterView
     },
     {
       path: '/login',
-      // name: 'Login',
       component: LoginView
     },
     {
       path: '/',
-      // name: 'Home',
       component: DashboardView,
       beforeEnter: AuthGuard
     },
     {
       path: '/profile',
-      // name: 'Profile',
       component: ProfileView,
       beforeEnter: AuthGuard
     },
     {
       path: '/projects',
-      // name: 'Projects',
       component: ProjectsView,
       beforeEnter: AuthGuard
     },
     {
       path: '/tickets',
-      // name: 'Tickets',
       component: TicketsView
     },
     {
       path: '/create_ticket',
-      // name: 'CreateTicket',
       component: CreateTicketView
     },
     {
