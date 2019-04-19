@@ -33,11 +33,7 @@ describe('TimeLine', () => {
     expect(wrapper.isVueInstance()).toBeTruthy()
   })
 
-  it('renders correctly', () => {
-    expect(wrapper.$el).toMatchSnapshot()
-  })
-
   it('check the random color computed property', () => {
-    expect(wrapper.vm.colors).toContain('#')
+    expect(wrapper.vm.getRandomColor()).toContain('#')
   })
 })

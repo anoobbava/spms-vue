@@ -13,17 +13,20 @@
       <v-flex xs6>
         <v-card>
           <h2>TimeLine</h2>
-          <time-line :ticketActivityLogs="ticketActivityLogs"/>
+          <time-line :ticketActivityLogs="display10Activity()"/>
         </v-card>
       </v-flex>
 
       <v-flex xs6>
-        <v-card mb-3>
+        <v-card>
           <pie-chart class="card-style"
           ></pie-chart>
         </v-card>
+        <v-spacer></v-spacer>
+        <v-card class="manager-details">
+          <manager-details/>
+        </v-card>
       </v-flex>
-
 
     </v-layout>
   </v-container>
@@ -34,13 +37,15 @@ import ApiHelper from '@/services/ApiHelper'
 import PieChart from '@/components/charts/PieChart'
 import TimeSpend from '@/components/charts/TimeSpend'
 import TimeLine from '@/components/charts/TimeLine'
+import ManagerDetails from '@/components/tables/ManagerDetails'
 import { mapGetters } from 'vuex'
 
 export default {
   components: {
     PieChart,
     TimeSpend,
-    TimeLine
+    TimeLine,
+    ManagerDetails
   },
 
   beforeMount () {
@@ -60,7 +65,12 @@ export default {
         .catch(error => {
           console.log(error)
         })
+    },
+
+    display10Activity () {
+      return this.ticketActivityLogs.splice(0, 5)
     }
+
   }
 }
 </script>
@@ -69,7 +79,12 @@ export default {
   .card-style {
     transition: transform .2s;
   }
+
   .card-style:hover {
     transform: scale(1.02);
+  }
+
+  .manager-details {
+    margin-top: 1%;
   }
 </style>

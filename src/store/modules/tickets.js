@@ -17,6 +17,13 @@ export default {
   },
 
   getters: {
-    tickets: state => state.tickets
+    tickets: state => state.tickets,
+    projectTickets (state) {
+      return projectId => state.tickets.filter(ticket => {
+        return ticket.attributes.project_id === parseInt(projectId)
+      })
+    }
+    // ,
+    // userTickets: state => userId => state.projects.find(project => project.id === projectID)
   }
 }

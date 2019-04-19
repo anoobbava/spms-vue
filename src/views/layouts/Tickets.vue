@@ -2,11 +2,11 @@
   <v-container grid-list-md text-xs-center>
     <v-layout row wrap>
       <v-flex xs12>
-        <h3>Tickets  & Activities for {{project.attributes.name}} Project </h3>
+        <h3>Tickets  & Activities for {{project(this.project_id).attributes.name}} Project </h3>
         <v-spacer></v-spacer>
         <v-expansion-panel popout>
           <v-expansion-panel-content
-            v-for="(ticket, index) in tickets"
+            v-for="(ticket, index) in projectTickets(this.project_id)"
             :key="index" >
             <template v-slot:header>
               <div class="capitalize">{{ticket.attributes.title}}</div>
@@ -31,10 +31,8 @@ export default {
     TimeLine
   },
   computed: {
-    ...mapGetters(['tickets', 'ticketActivityLogs']),
-    project () {
-      return this.$store.getters['project'](this.project_id)
-    }
+    ...mapGetters(['tickets', 'ticketActivityLogs', 'project', 'userId',
+      'projectTickets'])
   },
 
   beforeMount () {

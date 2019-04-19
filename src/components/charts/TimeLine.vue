@@ -14,9 +14,9 @@
         </span>
       </template>
 
-      <v-card class="elevation-2">
+      <v-card class="elevation-2 primary">
 
-        <v-card-title class="headline accent">
+        <v-card-title class="headline">
           {{item.attributes.ticket_id}}-{{item.attributes.status}}
         </v-card-title>
 
@@ -33,12 +33,6 @@
 
 export default {
   props: ['ticketActivityLogs'],
-  computed: {
-    colors () {
-      return this.getRandomColor()
-    }
-  },
-
   methods: {
     getRandomColor () {
       const letters = '0123456789ABCDEF'

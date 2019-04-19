@@ -81,7 +81,8 @@ export default {
   getters: {
     isLoggedIn: state => state.token,
     status: state => state.status,
-    user: state => state.user
+    user: state => state.user,
+    userId: state => state.user.id
   },
 
   mutations: {
