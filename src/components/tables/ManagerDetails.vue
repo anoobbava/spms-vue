@@ -4,7 +4,7 @@
     :items="projectManagers"
     hide-actions>
 
-    <template
+    <template class="primary"
       slot="headerCell"
       slot-scope="{ header }">
       <span

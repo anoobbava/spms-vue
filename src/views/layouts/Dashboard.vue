@@ -68,7 +68,7 @@ export default {
     },
 
     display10Activity () {
-      return Object.values(this.ticketActivityLogs).splice(0, 5)
+      return Object.values(this.ticketActivityLogs).splice(0, 4)
     }
 
   }
