@@ -2,20 +2,21 @@
   <v-container grid-list-md text-xs-center>
     <v-layout row wrap>
       <v-flex xs12>
-        <h3>Tickets  & Activities for {{project(this.project_id).attributes.name}} Project </h3>
+        <h2>Tickets & Activities for {{project(this.project_id).attributes.name}} Project </h2>
         <v-spacer></v-spacer>
-        <v-expansion-panel popout>
+        <v-expansion-panel popout v-if="projectTickets(this.project_id).length > 0">
           <v-expansion-panel-content
             v-for="(ticket, index) in projectTickets(this.project_id)"
             :key="index" >
             <template v-slot:header>
               <div class="capitalize">{{ticket.attributes.title}}</div>
             </template>
-
-            <time-line :ticketActivityLogs="ticketActivityLogs"/>
-
+            <time-line :ticketActivityLogs="displaySingleTicketActivity(ticket.attributes.id)"/>
           </v-expansion-panel-content>
         </v-expansion-panel>
+        <div v-else >
+          <h3 class="no-data-available">No tickets Added</h3>
+        </div>
       </v-flex>
     </v-layout>
   </v-container>
@@ -48,13 +49,23 @@ export default {
         .catch(error => {
           console.log(error)
         })
+    },
+
+    displaySingleTicketActivity (ticketId) {
+      return this.$store.getters.ticketActivityLogs.filter(a => a.attributes.ticket_id === parseInt(ticketId))
     }
   }
 }
 </script>
 
-<style>
+<style scoped>
   .capitalize {
     text-transform: capitalize;
-}
+  }
+  .no-data-available {
+    text-align: center;
+    margin-top: 2%;
+    font-size: 20px;
+    background-color: tomato;
+  }
 </style>

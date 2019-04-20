@@ -23,7 +23,5 @@ export default {
         return ticket.attributes.project_id === parseInt(projectId)
       })
     }
-    // ,
-    // userTickets: state => userId => state.projects.find(project => project.id === projectID)
   }
 }

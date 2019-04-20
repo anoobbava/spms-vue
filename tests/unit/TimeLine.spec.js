@@ -8,8 +8,11 @@ describe('TimeLine', () => {
   localVue.use(VueRouter)
   localVue.use(Vuex)
   const router = new VueRouter()
-  const store = new Vuex.Store({
-    state: {
+  const store = new Vuex.Store({ state: {} })
+  const wrapper = shallowMount(TimeLine, { localVue,
+    router,
+    store,
+    propsData: {
       ticketActivityLogs: [
         {
           attributes: {
@@ -21,13 +24,8 @@ describe('TimeLine', () => {
           }
         }
       ]
-    },
-
-    getters: {
-      ticketActivityLogs: (state) => state.ticketActivityLogs
     }
   })
-  const wrapper = shallowMount(TimeLine, { localVue, router, store })
 
   it('is a component', () => {
     expect(wrapper.isVueInstance()).toBeTruthy()
