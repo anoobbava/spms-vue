@@ -19,7 +19,7 @@ export default {
   getters: {
     tickets: state => state.tickets,
     projectTickets (state) {
-      return projectId => state.tickets.filter(ticket => {
+      return projectId => Object.values(state.tickets).filter(ticket => {
         return ticket.attributes.project_id === parseInt(projectId)
       })
     }
