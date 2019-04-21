@@ -13,7 +13,7 @@ export default {
   failureLogin () {
     Swal.fire({
       title: 'Error!',
-      text: 'Error in login',
+      text: 'Error',
       type: 'error',
       timer: 1000,
       showConfirmButton: false
@@ -26,6 +26,26 @@ export default {
       text: 'You are not assigned to any Project',
       timer: 1500,
       type: 'warning',
+      showConfirmButton: false
+    })
+  },
+
+  success (status) {
+    Swal.fire({
+      title: status,
+      type: 'success',
+      position: 'center',
+      timer: 1000,
+      showConfirmButton: false
+    })
+  },
+
+  failure (error) {
+    Swal.fire({
+      title: error,
+      text: 'Error',
+      type: 'error',
+      timer: 1000,
       showConfirmButton: false
     })
   }

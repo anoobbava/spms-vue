@@ -15,6 +15,7 @@
     "store": "^2.0.12",
     "sweetalert2": "^8.8.1",
     "typeface-roboto": "0.0.54",
+    "vee-validate": "^2.2.4",
     "vue": "^2.6.6",
     "vue-chartkick": "^0.5.0",
     "vue-cute-timeline": "^1.2.8",

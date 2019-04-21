@@ -36,5 +36,13 @@ export default {
   async fetchTickets () {
     const response = await axios.get('tickets', { Authorization: `bearer ${token}` })
     return response.data
+  },
+
+  async fetchActivity () {
+  },
+
+  async createActivity (activityObject) {
+    const response = await axios.post('ticket_activity_logs', { ticket_activity_log: activityObject })
+    return response.data
   }
 }

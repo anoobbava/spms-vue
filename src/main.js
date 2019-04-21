@@ -10,9 +10,10 @@ import axios from 'axios'
 import VueChartkick from 'vue-chartkick'
 import Chart from 'chart.js'
 import moment from 'moment'
-import 'typeface-roboto/index.css'
+import VeeValidate from 'vee-validate'
 
 Vue.use(VueChartkick, { adapter: Chart })
+Vue.use(VeeValidate)
 
 Vue.config.productionTip = false
 Vue.prototype.moment = moment

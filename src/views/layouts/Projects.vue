@@ -39,11 +39,18 @@
                 <v-avatar right
                   size="60px"
                   color="lighten-4">
-                  <v-img
+                  <!-- <v-img
                     src="../img/user.png"
                     v-on="on"
                     alt="avatar">
-                  </v-img>
+                  </v-img> -->
+                  <v-img
+                    class="elevation-6"
+                    v-on="on"
+                    src="https://avataaars.io/?avatarStyle=Transparent&topType=ShortHairShortCurly&
+                      accessoriesType=Prescription02&hairColor=Black&facialHairType=Blank&clotheType=Hoodie&
+                      clotheColor=White&eyeType=Default&eyebrowType=DefaultNatural&mouthType=Default&skinColor=Light"
+          ></v-img>
                 </v-avatar>
               </template>
               <span>Manager >> {{project.attributes.manager.data.attributes.name}}</span>
@@ -81,7 +88,7 @@ export default {
     },
 
     displayTickets (projectId) {
-      this.$router.push('/project/'+ projectId)
+      this.$router.push('/project/' + projectId)
     }
   }
 }

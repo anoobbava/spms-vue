@@ -26,6 +26,10 @@ export default {
         return new Date(b.attributes.log_date) - new Date(a.attributes.log_date)
       })
       commit('ticketActivityLogsMutation', data)
+    },
+
+    addTicketActivityLogAction ({ commit }, payload) {
+      commit('updateTicketActivityMutation', payload.ticket_activity_log.data)
     }
   },
 
@@ -37,6 +41,10 @@ export default {
 
     ticketActivityLogsMutation: (state, payload) => {
       state.ticketActivityLogs = payload
+    },
+
+    updateTicketActivityMutation: (state, payload) => {
+      state.ticketActivityLogs = [payload, ...state.ticketActivityLogs]
     }
   }
 }
