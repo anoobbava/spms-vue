@@ -14,7 +14,10 @@
               <!-- Add activity list -->
               <div class="text-xs-center"
                 v-if="displaySingleTicketActivity(ticket.attributes.id).length > 0">
+                <!-- display activity dialog -->
                 <v-dialog
+                  v-model="dialog"
+                  persistent
                   width="800"
                 >
                   <template v-slot:activator="{ on }">
@@ -38,16 +41,19 @@
                       <v-card-text>
                         <v-container grid-list-md>
                           <v-layout wrap>
-
+                            <!-- activity add text form -->
                             <v-flex xs12>
                               <v-text-field
-                                label="Activity Name*"
                                 v-model="activity"
-                                v-validate="'required'">
-                              </v-text-field>
-                              <span>{{errors.first('activity')}}</span>
+                                v-validate="'required|max:60'"
+                                :counter="60"
+                                :error-messages="errors.collect('activity')"
+                                label="Activity Name*"
+                                data-vv-name="activity"
+                                required
+                              ></v-text-field>
                             </v-flex>
-
+                            <!-- date picker form -->
                             <v-flex xs12>
                               <v-menu
                                 v-model="datePicker"
@@ -71,35 +77,54 @@
                                 <v-date-picker v-model="logDate" @input="datePicker = false"></v-date-picker>
                               </v-menu>
                             </v-flex>
-
+                            <!-- Log time form -->
                             <v-flex xs12 sm6>
                               <v-text-field
-                                label="Log Time*"
                                 v-model="logTime"
-                                v-validate="'numeric'"
-                                data-vv-as="field">
-                              </v-text-field>
-                              <h3>{{errors.first('logTime')}}</h3>
+                                v-validate="'required|numeric|max:4'"
+                                :error-messages="errors.collect('logTime')"
+                                label="Log Time*"
+                                data-vv-name="logTime"
+                                required
+                              ></v-text-field>
                             </v-flex>
-
+                            <!-- Ticket status -->
                             <v-flex xs12 sm6>
                               <v-autocomplete
-                                :items="['idea', 'In-Progress', 'Completed', 'Accepted', 'Released']"
-                                label="Status"
                                 v-model="status"
-                              >
-                              </v-autocomplete>
+                                v-validate="'required'"
+                                :items="ticketStatus"
+                                :error-messages="errors.collect('status')"
+                                label="Select ticket status*"
+                                data-vv-name="status"
+                                required
+                              ></v-autocomplete>
                             </v-flex>
-
                           </v-layout>
                         </v-container>
                         <small>*indicates required field</small>
                       </v-card-text>
-
                     <v-divider></v-divider>
-
+                    <!-- actions in the modal -->
                     <v-card-actions>
                       <v-spacer></v-spacer>
+                      <!-- cancel button -->
+                      <v-btn
+                        color="primary"
+                        flat
+                        @click="cancelForm"
+                      >
+                        cancel
+                      </v-btn>
+                      <!-- reset form -->
+                      <v-btn
+                        color="primary"
+                        flat
+                        @click="resetForm"
+                      >
+                        clear
+                      </v-btn>
+                      <!-- submit acitivity form -->
                       <v-btn
                         color="primary"
                         flat
@@ -112,7 +137,6 @@
                   </v-card>
                 </v-dialog>
               </div>
-              <!--  -->
             </template>
             <time-line :ticketActivityLogs="displaySingleTicketActivity(ticket.attributes.id)"/>
           </v-expansion-panel-content>
@@ -138,7 +162,8 @@ export default {
       logTime: '',
       logDate: new Date().toISOString().substr(0, 10),
       status: '',
-      datePicker: false
+      datePicker: false,
+      ticketStatus: ['idea', 'In-Progress', 'Completed', 'Accepted', 'Released']
     }
   },
   props: ['project_id'],
@@ -153,7 +178,7 @@ export default {
       return this.activity !== '' && this.logTime !== ''
     }
   },
-
+  // fetch tickets on page load
   beforeMount () {
     this.fetchTickets()
   },
@@ -180,7 +205,27 @@ export default {
       this.status = ''
     },
 
+    resetForm () {
+      this.clearData()
+      this.$validator.reset()
+    },
+
+    cancelForm () {
+      this.dialog = false
+      this.clearData()
+      this.$validator.reset()
+    },
+
     addActivity (ticketId) {
+      this.$validator.validateAll()
+        .then(status => {
+          if (status === true) {
+            this.submitForm(ticketId)
+          }
+        })
+    },
+
+    submitForm (ticketId) {
       this.dialog = false
       const ActivityData = {
         'ticket_id': ticketId,
@@ -190,15 +235,13 @@ export default {
         'user_id': this.$store.getters.userId,
         'status': this.status
       }
-
+      // call API to update the new Activity
       ApiHelper.createActivity(ActivityData)
-
         .then(response => {
           SweetAlerts.success(response.status)
           this.clearData()
           this.$store.dispatch('addTicketActivityLogAction', response)
         })
-
         .catch(error => {
           SweetAlerts.failure('Error on adding Activity')
           console.log(error)
