@@ -11,7 +11,6 @@ import ProjectsView from '@/views/layouts/Projects'
 import singleProjectview from '@/views/layouts/Tickets'
 import CreateTicketView from '@/views/layouts/CreateTicket'
 import NotFoundView from '@/views/layouts/NotFound'
-import Activity from '@/views/layouts/Activity'
 
 // import helpers
 import AuthGuard from '@/services/AuthGuard'
@@ -54,10 +53,6 @@ const router = new Router({
     {
       path: '/create_ticket',
       component: CreateTicketView
-    },
-    {
-      path: '/activity',
-      component: Activity
     },
     {
       path: '*',

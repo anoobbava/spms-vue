@@ -144,6 +144,9 @@
         <div v-else >
           <h3 class="no-data-available">No tickets Added</h3>
         </div>
+        <v-spacer></v-spacer>
+        <v-btn round class="primary"
+        @click="goToDashboard"> Dashboard</v-btn>
       </v-flex>
     </v-layout>
   </v-container>
@@ -223,6 +226,10 @@ export default {
             this.submitForm(ticketId)
           }
         })
+    },
+
+    goToDashboard () {
+      this.$router.push('/')
     },
 
     submitForm (ticketId) {
