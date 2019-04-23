@@ -9,7 +9,6 @@ import DashboardView from '@/views/layouts/Dashboard'
 import ProfileView from '@/views/layouts/Profile'
 import ProjectsView from '@/views/layouts/Projects'
 import singleProjectview from '@/views/layouts/Tickets'
-import CreateTicketView from '@/views/layouts/CreateTicket'
 import NotFoundView from '@/views/layouts/NotFound'
 
 // import helpers
@@ -49,10 +48,6 @@ const router = new Router({
       path: '/project/:project_id',
       props: true,
       component: singleProjectview
-    },
-    {
-      path: '/create_ticket',
-      component: CreateTicketView
     },
     {
       path: '*',

@@ -45,7 +45,7 @@ export default {
       title: error,
       text: 'Error',
       type: 'error',
-      timer: 1000,
+      timer: 2000,
       showConfirmButton: false
     })
   }

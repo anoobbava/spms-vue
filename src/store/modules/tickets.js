@@ -7,12 +7,20 @@ export default {
   actions: {
     ticketsAction ({ commit }, payload) {
       commit('ticketsMutation', payload)
+    },
+
+    addTicketAction ({ commit }, payload) {
+      commit('addNewTicketMutation', payload.ticket.data)
     }
   },
 
   mutations: {
     ticketsMutation (state, payload) {
       state.tickets = payload.tickets.data
+    },
+
+    addNewTicketMutation (state, payload) {
+      state.tickets = [payload, ...state.tickets]
     }
   },
 

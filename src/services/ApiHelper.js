@@ -38,7 +38,9 @@ export default {
     return response.data
   },
 
-  async fetchActivity () {
+  async createTicket (ticketObject) {
+    const response = await axios.post('tickets', { ticket: ticketObject })
+    return response.data
   },
 
   async createActivity (activityObject) {
