@@ -55,27 +55,12 @@
                             </v-flex>
                             <!-- date picker form -->
                             <v-flex xs12>
-                              <v-menu
-                                v-model="datePicker"
-                                :close-on-content-click="false"
-                                :nudge-right="40"
-                                lazy
-                                transition="scale-transition"
-                                offset-y
-                                full-width
-                                min-width="290px"
+                              <v-date-picker
+                                v-model="logDate"
+                                color="green lighten-1"
+                                header-color="primary"
                               >
-                                <template v-slot:activator="{ on }">
-                                  <v-text-field
-                                    v-model="logDate"
-                                    label="select the Date"
-                                    prepend-icon="event"
-                                    readonly
-                                    v-on="on"
-                                  ></v-text-field>
-                                </template>
-                                <v-date-picker v-model="logDate" @input="datePicker = false"></v-date-picker>
-                              </v-menu>
+                              </v-date-picker>
                             </v-flex>
                             <!-- Log time form -->
                             <v-flex xs12 sm6>
@@ -165,7 +150,6 @@ export default {
       logTime: '',
       logDate: new Date().toISOString().substr(0, 10),
       status: '',
-      datePicker: false,
       ticketStatus: ['idea', 'In-Progress', 'Completed', 'Accepted', 'Released']
     }
   },

@@ -24,7 +24,6 @@
           <v-card-text>
             {{item.attributes.activity}}
           </v-card-text>
-
         </v-card>
       </v-timeline-item>
     </v-timeline>

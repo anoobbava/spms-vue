@@ -150,57 +150,24 @@
 
                             <!-- start date-->
                             <v-flex xs-12>
-                              <v-menu
-                                v-model="startDateMenu"
-                                  :close-on-content-click="false"
-                                  :nudge-right="40"
-                                  lazy
-                                  transition="scale-transition"
-                                  offset-y
-                                  full-width
-                                  min-width="290px"
-                                >
-                                <template v-slot:activator="{ on }">
-                                  <v-text-field
-                                    v-model="startDate"
-                                    label="select the start date"
-                                    prepend-icon="event"
-                                    readonly
-                                    v-on="on">
-                                  </v-text-field>
-                                </template>
-                                <v-date-picker
-                                  v-model="startDate"
-                                  @input="startDateMenu = false">
-                                </v-date-picker>
-                              </v-menu>
+                              <h4>Start Date</h4>
+                              <v-date-picker
+                                v-model="startDate"
+                                color="primary"
+                                header-color="primary"
+                              >
+                              </v-date-picker>
                             </v-flex>
 
                             <!-- end date  -->
                             <v-flex xs-12>
-                              <v-menu
-                                v-model="endDateMenu"
-                                :close-on-content-click="false"
-                                :nudge-right="40"
-                                lazy
-                                transition="scale-transition"
-                                offset-y
-                                full-width
-                                min-width="290px">
-                                <template v-slot:activator="{ on }">
-                                  <v-text-field
-                                    v-model="endDate"
-                                    label="select the end date"
-                                    prepend-icon="event"
-                                    readonly
-                                    v-on="on">
-                                  </v-text-field>
-                                </template>
-                                <v-date-picker
-                                  v-model="endDate"
-                                  @input="endDateMenu = false">
-                                </v-date-picker>
-                              </v-menu>
+                              <h4>End Date</h4>
+                              <v-date-picker
+                                v-model="endDate"
+                                color="primary"
+                                header-color="primary"
+                              >
+                              </v-date-picker>
                             </v-flex>
                         </v-layout>
                       </v-container>
@@ -303,9 +270,7 @@ export default {
       select: null,
       ticketCategory: ['Feature', 'Chore', 'Support', 'Bug'],
       ticketStatus: ['idea', 'In-Progress', 'Completed', 'Accepted', 'Released'],
-      checkbox: false,
-      startDateMenu: false,
-      endDateMenu: false
+      checkbox: false
     }
   },
   computed: {
