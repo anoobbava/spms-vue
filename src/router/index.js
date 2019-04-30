@@ -1,57 +1,70 @@
+// import common files
 import Vue from 'vue'
 import Router from 'vue-router'
-import Register from '@/register/Register.vue'
-import Login from '@/login/Login.vue'
-import Home from '@/views/Home.vue'
-import Profile from '@/views/Profile.vue'
-import Projects from '@/user/Projects.vue'
-import Tickets from '@/user/Tickets'
-import CreateTicket from '@/user/CreateTicket'
+
+// import routes
+import RegisterView from '@/views/layouts/Register'
+import LoginView from '@/views/layouts/Login'
+import DashboardView from '@/views/layouts/Dashboard'
+import ProfileView from '@/views/layouts/Profile'
+import ProjectsView from '@/views/layouts/Projects'
+import singleProjectview from '@/views/layouts/Tickets'
+import NotFoundView from '@/views/layouts/NotFound'
+
+// import helpers
 import AuthGuard from '@/services/AuthGuard'
+import store from '@/store'
 
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
     {
       path: '/register',
-      name: 'Register',
-      component: Register
+      component: RegisterView
     },
     {
       path: '/login',
-      name: 'Login',
-      component: Login
+      component: LoginView
     },
     {
       path: '/',
-      name: 'Home',
-      component: Home,
+      component: DashboardView,
       beforeEnter: AuthGuard
     },
     {
       path: '/profile',
-      name: 'Profile',
-      component: Profile,
+      component: ProfileView,
       beforeEnter: AuthGuard
     },
     {
       path: '/projects',
-      name: 'Projects',
-      component: Projects,
+      component: ProjectsView,
       beforeEnter: AuthGuard
     },
     {
-      path: '/tickets',
-      name: 'Tickets',
-      component: Tickets
+      path: '/project/:project_id',
+      props: true,
+      component: singleProjectview
     },
     {
-      path: '/create_ticket',
-      name: 'CreateTicket',
-      component: CreateTicket
+      path: '*',
+      component: NotFoundView
     }
   ]
 })
+
+router.beforeResolve((to, _from, next) => {
+  if (to.name) {
+    store.dispatch('startLoading')
+  }
+  next()
+})
+
+router.afterEach((to, from) => {
+  store.dispatch('stopLoading')
+})
+
+export default router

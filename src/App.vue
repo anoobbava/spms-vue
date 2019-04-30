@@ -1,6 +1,6 @@
 <template>
   <v-app>
-
+    <Loader></Loader>
     <!-- display the navigation bar -->
     <nav-bar></nav-bar>
 
@@ -10,11 +10,13 @@
 </template>
 
 <script>
-import NavBar from '@/views/NavBar'
+import NavBar from '@/components/shared/NavBar'
+import Loader from '@/components/shared/loader'
 export default {
   name: 'App',
   components: {
-    'nav-bar': NavBar
+    'nav-bar': NavBar,
+    'Loader': Loader
   }
 }
 </script>

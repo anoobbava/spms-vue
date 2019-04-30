@@ -1,5 +1,5 @@
 import axios from 'axios'
-import LoginHelper from '@/services/LoginHelper'
+import ApiHelper from '@/services/ApiHelper'
 
 export default {
   state: {
@@ -10,14 +10,12 @@ export default {
   },
 
   actions: {
-    loginAction ({
-      commit
-    }, payload) {
+    loginAction ({ commit, dispatch }, payload) {
       // set the status to loading
       commit('loadingStatusMutation')
       // now call the api to get the auth token and save to the localStorage
       return new Promise((resolve, reject) => {
-        LoginHelper.login(payload)
+        ApiHelper.login(payload)
           .then(response => {
             const token = response.auth_token
             const user = response.user.data
@@ -27,8 +25,7 @@ export default {
               token,
               user
             })
-            commit('projectsMutation',
-              user.attributes.projects.data)
+            dispatch('projectsAction', user.attributes.projects)
             resolve(response)
           })
           .catch(error => {
@@ -47,13 +44,11 @@ export default {
       commit('logoutMutation')
     },
 
-    validateTokenAction ({
-      commit
-    }, payload) {
+    validateTokenAction ({ commit, dispatch }, payload) {
       commit('loadingStatusMutation')
       if (payload !== '' || payload !== undefined) {
         return new Promise((resolve, reject) => {
-          LoginHelper.validateToken(payload)
+          ApiHelper.validateToken(payload)
             .then(response => {
               if (response.success) {
                 axios.defaults.headers.common['Authorization'] = payload
@@ -63,8 +58,7 @@ export default {
                   token,
                   user
                 })
-                commit('projectsMutation',
-                  user.attributes.projects.data)
+                dispatch('projectsAction', user.attributes.projects)
                 resolve(response)
               } else if (response.error) {
                 localStorage.removeItem('token')
@@ -87,7 +81,8 @@ export default {
   getters: {
     isLoggedIn: state => state.token,
     status: state => state.status,
-    user: state => state.user
+    user: state => state.user,
+    userId: state => state.user.id
   },
 
   mutations: {

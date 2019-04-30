@@ -1,6 +1,6 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils'
 import VueRouter from 'vue-router'
-import Register from '@/register/Register.vue'
+import Register from '@/views/layouts/Register.vue'
 
 describe('Login', () => {
   const localVue = createLocalVue()

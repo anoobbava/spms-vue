@@ -1,6 +1,6 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils'
 import VueRouter from 'vue-router'
-import Login from '@/login/Login.vue'
+import Login from '@/views/layouts/Login.vue'
 import Vuex from 'vuex'
 
 describe('Login', () => {
@@ -17,7 +17,6 @@ describe('Login', () => {
   const wrapper = shallowMount(Login, {
     localVue, router, store
   })
-  const options = { localVue, router }
 
   it('Login is a component', () => {
     expect(wrapper.isVueInstance()).toBeTruthy()
@@ -50,7 +49,7 @@ describe('Login', () => {
   it('will in turn call the redirectToLogin', () => {
     wrapper.vm.email = 'test@test.com'
     wrapper.vm.password = '123456'
-    // const options = { localVue, router }
+    const options = { localVue, router }
     const routerPushSpy = jest.spyOn(options.router, 'push')
     wrapper.vm.redirectToLogin()
     expect(routerPushSpy).toHaveBeenCalledWith('/login')

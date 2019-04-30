@@ -1,11 +1,23 @@
+// import main imports
 import Vue from 'vue'
-import './plugins/vuetify'
 import App from './App.vue'
+
+// import plugins
+import './plugins/vuetify'
 import router from '@/router'
 import store from '@/store'
 import axios from 'axios'
+import VueChartkick from 'vue-chartkick'
+import Chart from 'chart.js'
+import moment from 'moment'
+import VeeValidate from 'vee-validate'
+
+Vue.use(VueChartkick, { adapter: Chart })
+Vue.use(VeeValidate)
 
 Vue.config.productionTip = false
+Vue.prototype.moment = moment
+
 const token = localStorage.getItem('token')
 axios.defaults.baseURL = process.env.VUE_APP_RAILS_API_URL
 
@@ -23,7 +35,6 @@ new Vue({
       this.$router.push('/login')
     } else {
       this.$store.dispatch('validateTokenAction', localStorage.getItem('token'))
-      // this.$store.dispatch('projectsAction')
     }
   }
 }).$mount('#app')
