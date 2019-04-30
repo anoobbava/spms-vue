@@ -10,10 +10,10 @@
             v-for="ticket in projectTickets(this.project_id)"
             :key="ticket.id" >
             <template v-slot:header>
-              <div class="capitalize">{{ticket.attributes.title}}</div>
+              <div class="capitalize">{{ticket.attributes.ticket_no}}</div>
               <!-- Add activity list -->
               <div class="text-xs-center"
-                v-if="displaySingleTicketActivity(ticket.attributes.id).length > 0">
+                >
                 <!-- display activity dialog -->
                 <v-dialog
                   v-model="dialog"
@@ -165,21 +165,8 @@ export default {
       return this.activity !== '' && this.logTime !== ''
     }
   },
-  // fetch tickets on page load
-  beforeMount () {
-    this.fetchTickets()
-  },
 
   methods: {
-    fetchTickets () {
-      ApiHelper.fetchTickets()
-        .then(response => {
-          this.$store.dispatch('ticketsAction', response)
-        })
-        .catch(error => {
-          console.log(error)
-        })
-    },
 
     displaySingleTicketActivity (ticketId) {
       return this.$store.getters.ticketActivityLogs.filter(a => a.attributes.ticket_id === parseInt(ticketId))

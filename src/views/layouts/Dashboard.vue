@@ -50,6 +50,7 @@ export default {
 
   beforeMount () {
     this.callApi()
+    this.fetchTicketsApi()
   },
 
   computed: {
@@ -69,8 +70,18 @@ export default {
 
     display10Activity () {
       return Object.values(this.ticketActivityLogs).splice(0, 4)
-    }
+    },
 
+    // call API to fetch the tickets for whole projects
+    fetchTicketsApi () {
+      ApiHelper.fetchTickets()
+        .then(response => {
+          this.$store.dispatch('ticketsAction', response)
+        })
+        .catch(error => {
+          console.log(error)
+        })
+    }
   }
 }
 </script>
